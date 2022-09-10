@@ -5,6 +5,7 @@
     "plugin:@next/next/recommended"
   ],
   "rules": {
-    "@typescript-eslint/consistent-type-imports": "off"
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
