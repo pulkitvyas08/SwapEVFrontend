@@ -1,7 +1,7 @@
 /** @type {import('next-seo').DefaultSeoProps} */
 const defaultSEOConfig = {
-  title: "nextarter-chakra",
-  titleTemplate: "%s | nextarter-chakra",
+  title: "SwapEV",
+  titleTemplate: "%s | SwapEV",
   defaultTitle: "nextarter-chakra",
   description: "Next.js + chakra-ui + TypeScript template",
   canonical: "https://nextarter-chakra.sznm.dev",

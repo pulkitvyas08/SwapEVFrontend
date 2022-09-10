@@ -1,5 +1,5 @@
 {
-  "name": "nextarter-chakra",
+  "name": "SwapEV",
   "version": "0.1.0",
   "private": true,
   "author": "sozonome",
@@ -22,6 +22,7 @@
     "@chakra-ui/react": "^2.2.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@react-navigation/bottom-tabs": "^6.3.3",
     "framer-motion": "^6.5.1",
     "next": "12.2.0",
     "next-seo": "^5.5.0",
