@@ -9,13 +9,13 @@ import FooterItem from "lib/components/FooterItem";
 
 const Footer = () => {
   const router = useRouter();
-  const activePage = router.query;
+  const activePage = router.asPath.substring(1);
   const [selectedPage, setSelectedPage] = useState("home");
 
   useEffect(() => {
     if (activePage === undefined) setSelectedPage("home");
     else setSelectedPage(String(activePage));
-  }, [activePage]);
+  }, [activePage, router]);
 
   return (
     <Flex
@@ -27,6 +27,7 @@ const Footer = () => {
       maxW="700px"
       p="10px 0 10px 0"
       borderTop="1px solid rgba(255, 255, 255, 0.16)"
+      bgColor="#1A202C"
     >
       <FooterItem
         selected={selectedPage}

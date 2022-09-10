@@ -20,6 +20,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
             rel="stylesheet"
           />
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcf-4VVw3jUW0rBTGH8d4IWMhzxppEhKk&libraries=places" />
 
           <meta name="application-name" content={APP_NAME} />
           <meta name="apple-mobile-web-app-capable" content="yes" />

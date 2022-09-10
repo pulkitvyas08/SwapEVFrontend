@@ -6,6 +6,8 @@
   ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@next/next/no-sync-scripts": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

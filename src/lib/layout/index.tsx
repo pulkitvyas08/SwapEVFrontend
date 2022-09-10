@@ -10,7 +10,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <Box margin="0 auto" minH="100vh" transition="0.5s ease-out">
-      <Box margin="0">
+      <Box margin="0" p="20px 20px 20px 20px" maxH="87.5vh" overflowY="scroll">
         <Box as="main">{children}</Box>
       </Box>
       <Footer />
