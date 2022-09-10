@@ -8,6 +8,9 @@
     "@typescript-eslint/consistent-type-imports": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@next/next/no-sync-scripts": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-console": "off",
+    "no-nested-ternary": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }

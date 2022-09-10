@@ -1,18 +1,20 @@
 import { faker } from "@faker-js/faker";
 
-import { Car } from "lib/types/car";
+import { Vehicle } from "lib/types/vehicle";
+import { randomIntFromInterval } from "lib/utils";
 
-export function createRandomUser(): Car {
+export function createRandomUser(): Vehicle {
   return {
-    company: faker.vehicle.manufacturer(),
+    manufacturer: faker.vehicle.manufacturer(),
     model: faker.vehicle.model(),
     licenseNo: faker.vehicle.vin(),
     carPurchaseDate: faker.date.past(),
     lastBatteryPurchase: faker.date.past(),
+    chargePercentage: randomIntFromInterval(0, 100),
   };
 }
 
-export const CarList: Car[] = [];
+export const CarList: Vehicle[] = [];
 
 Array.from({ length: 1 }).forEach(() => {
   CarList.push(createRandomUser());

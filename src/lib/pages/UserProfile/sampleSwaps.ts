@@ -11,6 +11,6 @@ export function createRandomUser(): SwapData {
 
 export const sampleSwaps: SwapData[] = [];
 
-Array.from({ length: 3 }).forEach(() => {
+Array.from({ length: 5 }).forEach(() => {
   sampleSwaps.push(createRandomUser());
 });

@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 import { CarList } from "../CarInfo/sampleCars";
-import { Car } from "lib/types/car";
 import { SwapData } from "lib/types/swapData";
 import { User } from "lib/types/user";
+import { Vehicle } from "lib/types/vehicle";
 
 import { sampleSwaps } from "./sampleSwaps";
 import { SampleUser } from "./sampleUser";
@@ -15,7 +15,7 @@ import { SampleUser } from "./sampleUser";
 const UserProfile: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | undefined>(undefined);
-  const [vehicle, setVehicle] = useState<Car | undefined>(undefined);
+  const [vehicle, setVehicle] = useState<Vehicle | undefined>(undefined);
   const [swapData, setSwapData] = useState<SwapData[] | undefined>(undefined);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const UserProfile: React.FC = () => {
         rowGap="25px"
         justifyContent="center"
       >
-        <Avatar size="xl" />
+        <Avatar src={user?.avatarUrl} size="xl" />
         <Flex columnGap="5px">
           <Heading>{user?.firstName}</Heading>
           <Heading>{user?.lastName}</Heading>
@@ -51,20 +51,23 @@ const UserProfile: React.FC = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Image width="auto" height="60px" src="/images/jeep.png" />
+          <Image width="auto" height="60px" src="/images/porche.png" />
           <Flex direction="column" rowGap="5px">
             <Text>{vehicle?.model}</Text>
-            <Text>{vehicle?.company}</Text>
+            <Text>{vehicle?.manufacturer}</Text>
           </Flex>
         </Flex>
         <Heading size="sm">Recent Battery Swaps:</Heading>
         <Flex flexDirection="column" alignItems="right">
           {swapData &&
             swapData.map((item) => (
-              <Flex columnGap="10px" alignItems="center">
-                <Text fontSize="12px">
-                  {moment(item.date).format("Do MMM YYYY")}
-                </Text>
+              <Flex
+                fontSize="12px"
+                columnGap="15px"
+                alignItems="center"
+                key={String(item.date)}
+              >
+                <Text>{moment(item.date).format("Do MMM YYYY")}</Text>
                 <Text>{item.location}</Text>
               </Flex>
             ))}

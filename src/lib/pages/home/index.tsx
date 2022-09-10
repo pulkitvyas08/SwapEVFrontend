@@ -59,10 +59,7 @@ const Home = () => {
                         cursor="pointer"
                         {...getSuggestionItemProps(suggestion)}
                       >
-                        <>
-                          {suggestion.description}
-                          {coordinates}
-                        </>
+                        {suggestion.description}
                       </Flex>
                     );
                   })}
