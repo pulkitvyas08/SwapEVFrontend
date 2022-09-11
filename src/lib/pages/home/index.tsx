@@ -2,7 +2,7 @@ import { Flex, Heading, Input } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -10,6 +10,8 @@ import PlacesAutocomplete, {
 
 import { getNearestStation } from "lib/axios/station";
 import HomeButton from "lib/components/HomeButton";
+import AddVehicleModal from "lib/components/AddVehicleModal";
+import BookModal from "lib/components/BookModal";
 
 const Home = () => {
   const router = useRouter();
@@ -21,10 +23,14 @@ const Home = () => {
     lat: null,
     lng: null,
   });
-
-  const onNearestClick = () => {
+  const [isOpen, setModal] = useState(false);
+  const [station, setStation] = useState<any>({});
+  const onNearestClick = async () => {
     if (coordinates.lat !== null && coordinates.lng !== null) {
-      const idk = getNearestStation(coordinates);
+      const idk = await getNearestStation(coordinates);
+      console.log({ idk });
+      setStation(idk[0]);
+      setModal(true);
     }
   };
 
@@ -94,6 +100,7 @@ const Home = () => {
             functionToExecute={() => router.push("/find")}
           />
         </Flex>
+        <BookModal isOpen={isOpen} setModalOpen={setModal} station={station} />
       </Flex>
     </Flex>
   );
