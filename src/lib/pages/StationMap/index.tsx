@@ -4,16 +4,14 @@ import React, { useEffect, useState } from "react";
 
 import { MapMarker } from "lib/types/mapMarker";
 
-import { SampleMarkers } from "./sampleMarkers";
-
 const containerStyle = {
   width: "100%",
   height: "500px",
 };
 
 const center = {
-  lat: 28.568238,
-  lng: 77.219666,
+  latitude: 28.568238,
+  longitude: 77.219666,
 };
 
 function MyComponent() {
@@ -23,12 +21,8 @@ function MyComponent() {
     googleMapsApiKey: "AIzaSyBcf-4VVw3jUW0rBTGH8d4IWMhzxppEhKk",
   });
 
-  useEffect(() => {
-    setMarkers(SampleMarkers);
-  }, []);
-
   const onLoad = React.useCallback(function callback(map: any) {
-    const bounds = new window.google.maps.LatLngBounds(center);
+    const bounds = new window.google.maps.LatLngBounds(center as LatLng);
     map.fitBounds(bounds);
   }, []);
 
@@ -42,7 +36,10 @@ function MyComponent() {
       {markers &&
         markers.map((marker) => (
           <MarkerF
-            position={{ lat: marker.lat, lng: marker.lng }}
+            position={{
+              latitude: Number(marker.latitude),
+              longitude: marker.longitude,
+            }}
             key={marker.id}
           />
         ))}

@@ -8,6 +8,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
+import { getNearestStation } from "lib/axios/station";
 import HomeButton from "lib/components/HomeButton";
 
 const Home = () => {
@@ -21,7 +22,11 @@ const Home = () => {
     lng: null,
   });
 
-  console.log(coordinates);
+  const onNearestClick = () => {
+    if (coordinates.lat !== null && coordinates.lng !== null) {
+      const idk = getNearestStation(coordinates);
+    }
+  };
 
   const handleSelect = async (value: any) => {
     const results = await geocodeByAddress(value);
@@ -80,8 +85,8 @@ const Home = () => {
           <HomeButton
             buttonText="Find Nearest Charging Station"
             imageUrl="https://i.imgur.com/clGXNXF.jpg"
-            functionToExecute={() => router.push("/find")}
-            disabled
+            functionToExecute={onNearestClick}
+            disabled={coordinates.lat === null && coordinates.lng === null}
           />
           <HomeButton
             buttonText="Find Charging Stations in Your City"
