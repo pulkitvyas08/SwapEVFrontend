@@ -1,9 +1,21 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import { Flex, Box, Image, useMediaQuery } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Image,
+  useMediaQuery,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 import type React from "react";
+import { useState } from "react";
+
+import { signIn } from "lib/axios/sign_in";
 
 const Landing: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <Flex h="100%" w="100%" direction="column">
       <Flex w="100%" pt="1.5%" justifyContent="space-between">
@@ -42,16 +54,47 @@ const Landing: React.FC = () => {
             <img src="https://cdn.discordapp.com/attachments/941091409509896283/1018129380083515402/unknown.png" />
           </Box>
         </Flex>
-        <Flex pl="6%" pt="15%" direction="column" backgroundColor="blue">
+        <Flex pl="6%" pt="15%" direction="column" backgroundColor="transparent">
           <Box>
-            <img src="https://cdn.discordapp.com/attachments/941091409509896283/1018124648837296258/Rectangle_2.png" />
+            {/* <img src="https://cdn.discordapp.com/attachments/941091409509896283/1018124648837296258/Rectangle_2.png" /> */}
+            <Input
+              variant="solid"
+              backgroundColor="white"
+              height="3.5rem"
+              color="black"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
           </Box>
           <Box pt="15%">
-            <img src="https://cdn.discordapp.com/attachments/941091409509896283/1018124648837296258/Rectangle_2.png" />
+            {/* <img src="https://cdn.discordapp.com/attachments/941091409509896283/1018124648837296258/Rectangle_2.png" /> */}
+            <Input
+              variant="solid"
+              backgroundColor="white"
+              height="3.5rem"
+              color="black"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            />
           </Box>
           <Box pl="60%" pt="3%" fontSize={{ base: "0.81rem", md: "1rem" }}>
             Recover Password?
           </Box>
+          <Button
+            marginTop="8"
+            borderRadius="2px"
+            marginBottom="8"
+            backgroundColor="blue"
+            onClick={async () => {
+              await signIn(email, password);
+            }}
+          >
+            Sign In
+          </Button>
           <Flex>
             <Box pt="5%" pr="1%">
               <img src="https://cdn.discordapp.com/attachments/941091409509896283/1018136519501946890/Line_2.png" />
