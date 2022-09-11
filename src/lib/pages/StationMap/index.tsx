@@ -1,28 +1,55 @@
-import GoogleMapReact from "google-map-react";
-import React from "react";
+import { Heading } from "@chakra-ui/react";
+import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
+import React, { useEffect, useState } from "react";
 
-const StationMap = () => {
-  const latitude = 28.568238;
-  const longitude = 77.219666;
-  const renderMarkers = (map: any, maps: any) => {
-    return new maps.Marker({
-      position: { lat: latitude, lng: longitude },
-      map,
-      title: "Hello World!",
-    });
-  };
+import { MapMarker } from "lib/types/mapMarker";
 
-  return (
-    <div style={{ height: "50vh", width: "100%" }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "YOUR KEY" }}
-        defaultCenter={{ lat: latitude, lng: longitude }}
-        defaultZoom={16}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
-      />
-    </div>
-  );
+import { SampleMarkers } from "./sampleMarkers";
+
+const containerStyle = {
+  width: "100%",
+  height: "0px",
 };
 
-export default StationMap;
+const center = {
+  lat: 28.568238,
+  lng: 77.219666,
+};
+
+function MyComponent() {
+  const [markers, setMarkers] = useState<MapMarker[]>();
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBcf-4VVw3jUW0rBTGH8d4IWMhzxppEhKk",
+  });
+
+  useEffect(() => {
+    setMarkers(SampleMarkers);
+  }, []);
+
+  const onLoad = React.useCallback(function callback(map: any) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+  }, []);
+
+  return isLoaded ? (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={10}
+      onLoad={onLoad}
+    >
+      {markers &&
+        markers.map((marker) => (
+          <MarkerF
+            position={{ lat: marker.lat, lng: marker.lng }}
+            key={marker.id}
+          />
+        ))}
+    </GoogleMap>
+  ) : (
+    <Heading />
+  );
+}
+
+export default React.memo(MyComponent);
