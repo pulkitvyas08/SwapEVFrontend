@@ -8,7 +8,7 @@ import { SampleMarkers } from "./sampleMarkers";
 
 const containerStyle = {
   width: "100%",
-  height: "0px",
+  height: "200px",
 };
 
 const center = {
@@ -32,7 +32,7 @@ function MyComponent() {
     map.fitBounds(bounds);
   }, []);
 
-  return isLoaded ? (
+  return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -47,8 +47,6 @@ function MyComponent() {
           />
         ))}
     </GoogleMap>
-  ) : (
-    <Heading />
   );
 }
 
