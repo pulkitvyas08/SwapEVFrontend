@@ -3,6 +3,6 @@ export type MapMarker = {
   location?: string;
   city?: string;
   number_of_slots?: number;
-  latitude: number | string;
-  longitude: number | string;
+  lat: number | string;
+  lng: number | string;
 };
