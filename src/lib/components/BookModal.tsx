@@ -24,7 +24,7 @@ const BookModal = ({
 }: {
   station: any;
   isOpen: boolean;
-  setModalOpen: Function;
+  setModalOpen: any;
 }) => {
   const [vehicleValues, setVehicleValues] = useState<Vehicle>({
     manufacturer: "",
@@ -60,7 +60,7 @@ const BookModal = ({
           <Text fontSize="18px" mb="5px" mt="15px" textAlign="center">
             Number of Slots Avaiable {station.number_of_slots}
           </Text>
-          {otp != 0 ? (
+          {otp !== 0 ? (
             <Center mt="20px">
               <Text letterSpacing={"0.3em"} color={"green.400"}>
                 OTP:{" "}
